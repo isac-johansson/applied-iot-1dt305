@@ -8,6 +8,9 @@ pycom.heartbeat(False)
 
 print("The Pycom device is awake.")
 
+# Give the device some time to get readings
+time.sleep(1)
+
 temp1 = temp_sensors.get_temp_DS18S20(10)
 temp2 = temp_sensors.get_temp_DHT22(3)
 humidity = temp_sensors.get_humidity_DHT22(3)
@@ -30,8 +33,8 @@ if temp1 and temp2 and humidity is not None:
     pybytes.send_signal(1, t2)
     pybytes.send_signal(2, h1)
 
-    # Time for the Pycom to send the data
-    time.sleep(1)
+    # Give the device some time to send the data
+    time.sleep(2)
 
 # Send data every 15 minutes = 900 seconds
 print("\nThe Pycom device is going to sleep.")
